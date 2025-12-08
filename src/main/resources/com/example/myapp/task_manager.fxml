@@ -15,7 +15,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myapp.TaskManagerController">
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #;">
+        <HBox alignment="CENTER_LEFT" spacing="10">
             <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
@@ -42,12 +42,12 @@
                 <tabs>
                     <Tab text="Tasks">
                         <AnchorPane>
-                            <ListView fx:id="todoList" style="-fx-background-color: #DA70D6;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+                            <ListView fx:id="todoList"  AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
                         </AnchorPane>
                     </Tab>
                     <Tab text="Running">
                         <AnchorPane>
-                            <ListView fx:id="runningList" style="-fx-background-color: #FFB6C1;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+                            <ListView fx:id="runningList"  AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
                         <opaqueInsets>
                            <Insets />
                         </opaqueInsets></ListView>
@@ -55,12 +55,12 @@
                     </Tab>
                     <Tab text="Paused">
                         <AnchorPane>
-                            <ListView fx:id="pausedList" style="-fx-background-color: #E99674;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+                            <ListView fx:id="pausedList"  AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
                         </AnchorPane>
                     </Tab>
                     <Tab text="Completed">
                         <AnchorPane>
-                            <ListView fx:id="completedList" style="-fx-background-color: #9370DB;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+                            <ListView fx:id="completedList"  AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
                         </AnchorPane>
                     </Tab>
                 </tabs>

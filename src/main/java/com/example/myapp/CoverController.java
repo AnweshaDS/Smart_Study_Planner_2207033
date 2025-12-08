@@ -16,12 +16,10 @@ public class CoverController {
 
     @FXML
     public void initialize() {
-        // Try to load image from /images/logo.png - user can replace this file
         try (InputStream is = getClass().getResourceAsStream("logo1.png")) {
             if (is != null) {
                 logoView.setImage(new Image(is));
             } else {
-                // leave blank if not present; you can set a placeholder via CSS or leave the label below visible
             }
         } catch (Exception e) {
             e.printStackTrace();

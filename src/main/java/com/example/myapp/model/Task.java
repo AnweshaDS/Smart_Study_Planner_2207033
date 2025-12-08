@@ -4,9 +4,9 @@ public class Task {
     private int id;
     private String title;
     private String description;
-    private String status; // TODO, RUNNING, PAUSED, COMPLETED
-    private int plannedTime; // minutes
-    private int spentTime;   // minutes
+    private String status;
+    private int plannedTime;
+    private int spentTime;
 
     public Task() {}
 
@@ -19,7 +19,7 @@ public class Task {
         this.spentTime = spentTime;
     }
 
-    // Getters / setters
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getTitle() { return title; }
