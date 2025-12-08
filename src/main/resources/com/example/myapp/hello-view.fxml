@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.myapp.HelloController">
+
+    <top>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <TextField fx:id="taskInput" promptText="Enter a task..." HBox.hgrow="ALWAYS"/>
+            <Button text="Add Task" onAction="#onAddTask"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ListView fx:id="taskList" prefWidth="600" prefHeight="400"/>
+    </center>
+
+    <bottom>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Start" onAction="#onStartTask"/>
+            <Button text="Pause" onAction="#onPauseTask"/>
+            <Button text="Finish" onAction="#onFinishTask"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
