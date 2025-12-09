@@ -42,12 +42,12 @@
                 <tabs>
                     <Tab text="Tasks">
                         <AnchorPane>
-                            <ListView fx:id="todoList"  AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+                            <ListView fx:id="todoList" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
                         </AnchorPane>
                     </Tab>
                     <Tab text="Running">
                         <AnchorPane>
-                            <ListView fx:id="runningList"  AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+                            <ListView fx:id="runningList" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
                         <opaqueInsets>
                            <Insets />
                         </opaqueInsets></ListView>
@@ -55,12 +55,12 @@
                     </Tab>
                     <Tab text="Paused">
                         <AnchorPane>
-                            <ListView fx:id="pausedList"  AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+                            <ListView fx:id="pausedList" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
                         </AnchorPane>
                     </Tab>
                     <Tab text="Completed">
                         <AnchorPane>
-                            <ListView fx:id="completedList"  AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+                            <ListView fx:id="completedList" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
                         </AnchorPane>
                     </Tab>
                 </tabs>

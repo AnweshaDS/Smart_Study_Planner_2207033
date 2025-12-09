@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBUtil {
-    private static final String DB_URL = "jdbc:sqlite:studyplanner.db";
+    private static final String DB_URL = "jdbc:sqlite:" + System.getProperty("user.home") + "/studyplanner.db";
+
 
     static {
         try (Connection conn = getConnection(); Statement st = conn.createStatement()) {

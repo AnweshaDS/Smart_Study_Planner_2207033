@@ -41,7 +41,7 @@ public class TaskManagerController {
         lv.setCellFactory(list -> new ListCell<>() {
             private final HBox hb = new HBox(8);
             private final Label title = new Label();
-            // Buttons inside each cell (optional) - for now just clickable selection and external buttons work
+
             @Override
             protected void updateItem(Task item, boolean empty) {
                 super.updateItem(item, empty);
@@ -129,9 +129,10 @@ public class TaskManagerController {
     @FXML
     public void onViewDB() {
         try {
-            Stage stage = (Stage) todoList.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/db_view.fxml"));
-            stage.setScene(new Scene(loader.load(), 900, 650));
+            Stage stage = (Stage) titleField.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/myapp/db_view.fxml"));
+            stage.setScene(new Scene(loader.load(), 900, 600));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -141,7 +142,7 @@ public class TaskManagerController {
     public void onBackCover() {
         try {
             Stage stage = (Stage) todoList.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/splash.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/myapp/cover.fxml"));
             stage.setScene(new Scene(loader.load(), 900, 650));
         } catch (Exception e) {
             e.printStackTrace();
