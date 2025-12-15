@@ -8,21 +8,43 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20" style="-fx-background-color: #7FFFD4;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.example.myapp.CoverController">
+<VBox alignment="CENTER"
+      spacing="20"
+      style="-fx-background-color: #7FFFD4;"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.myapp.CoverController">
+
     <padding>
-        <Insets bottom="40" left="40" right="40" top="40" />
+        <Insets top="40" right="40" bottom="40" left="40"/>
     </padding>
 
     <ImageView fx:id="logoView" fitHeight="200" fitWidth="200" preserveRatio="true">
         <image>
-            <Image url="@logo1.png" />
+            <Image url="@logo1.png"/>
         </image>
     </ImageView>
 
-    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Smart Study Planner" />
-    <Label style="-fx-font-size: 14px; -fx-text-fill: #444;" text="Strategies for study with productivity" />
-    <Button onAction="#onContinue" style="-fx-background-color: #A9A9A9;" text="Continue" textFill="#242424f1">
-      <font>
-         <Font name="System Bold" size="11.0" />
-      </font></Button>
+    <Label text="Smart Study Planner"
+           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <Label text="Strategies for study with productivity"
+           style="-fx-font-size: 14px; -fx-text-fill: #444;"/>
+
+    <Button text="Login"
+            onAction="#onLogin"
+            style="-fx-background-color: #A9A9A9;">
+        <font>
+            <Font name="System Bold" size="12"/>
+        </font>
+    </Button>
+
+    <Button text="Exit"
+            onAction="#onExit"
+            style="-fx-background-color: #FF6B6B; -fx-text-fill: white;">
+        <font>
+            <Font name="System Bold" size="12"/>
+        </font>
+    </Button>
+
 </VBox>
