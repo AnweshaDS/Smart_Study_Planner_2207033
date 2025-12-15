@@ -12,15 +12,25 @@ public class DBUtil {
     static {
         try (Connection conn = getConnection(); Statement st = conn.createStatement()) {
             String sql = """
-                CREATE TABLE IF NOT EXISTS tasks (
-                  id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  title TEXT NOT NULL,
-                  description TEXT,
-                  status TEXT NOT NULL,
-                  planned_time INTEGER DEFAULT 0,
-                  spent_time INTEGER DEFAULT 0
-                );
-                """;
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    full_name TEXT,
+    age INTEGER,
+    qualification TEXT
+);
+
+CREATE TABLE IF NOT EXISTS tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    status TEXT NOT NULL,
+    planned_time INTEGER DEFAULT 0,
+    spent_time INTEGER DEFAULT 0
+);
+""";
             st.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
