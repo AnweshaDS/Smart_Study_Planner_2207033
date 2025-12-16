@@ -51,6 +51,7 @@ public class TodoController {
         String desc = descField.getText().trim();
         int planned = 0;
 
+
         try {
             if (!plannedField.getText().isBlank())
                 planned = Integer.parseInt(plannedField.getText().trim());

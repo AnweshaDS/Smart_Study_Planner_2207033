@@ -1,5 +1,6 @@
 package com.example.myapp;
 
+import com.example.myapp.dao.DailyStudyDAO;
 import com.example.myapp.dao.TaskDAO;
 import com.example.myapp.model.Task;
 import javafx.animation.KeyFrame;
@@ -14,23 +15,21 @@ public class RunningController {
     @FXML private ListView<Task> runningList;
     @FXML private Label timerLabel;
 
-    private final TaskDAO dao = new TaskDAO();
+    private final TaskDAO taskDAO = new TaskDAO();
+    private final DailyStudyDAO dailyDAO = new DailyStudyDAO();
+
     private Timeline timer;
     private Task activeTask;
 
+    private int sessionSeconds = 0; // ✅ TRACK CURRENT SESSION
+
     @FXML
     public void initialize() {
-        runningList.getItems().setAll(dao.getTasksByStatus("RUNNING"));
+        runningList.getItems().setAll(taskDAO.getTasksByStatus("RUNNING"));
 
-        runningList.getSelectionModel().selectedItemProperty().addListener(
-                (obs, oldTask, newTask) -> startTimer(newTask)
-        );
-
-        if (!runningList.getItems().isEmpty()) {
-            runningList.getSelectionModel().selectFirst();
-        } else {
-            timerLabel.setText("00:00:00");
-        }
+        runningList.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, old, selected) -> startTimer(selected));
     }
 
     private void startTimer(Task task) {
@@ -39,18 +38,18 @@ public class RunningController {
         if (task == null) return;
 
         activeTask = task;
+        sessionSeconds = 0;
 
-        // Timeline ticks every second
-        timer = new Timeline(
-                new KeyFrame(Duration.seconds(1), e -> {
-                    activeTask.setSpentTime(activeTask.getSpentTime() + 1);
-                    updateLabel();
-                })
-        );
+        timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            activeTask.setSpentTime(activeTask.getSpentTime() + 1);
+            sessionSeconds++;
+            taskDAO.update(activeTask);
+            updateLabel(activeTask.getSpentTime());
+        }));
+
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
-
-        updateLabel();
+        updateLabel(activeTask.getSpentTime());
     }
 
     private void stopTimer() {
@@ -60,21 +59,12 @@ public class RunningController {
         }
     }
 
-    private void updateLabel() {
-        if (activeTask == null) {
-            timerLabel.setText("00:00:00");
-            return;
-        }
+    private void updateLabel(int totalSeconds) {
+        int h = totalSeconds / 3600;
+        int m = (totalSeconds % 3600) / 60;
+        int s = totalSeconds % 60;
 
-        int totalSeconds = activeTask.getSpentTime();
-
-        int hours = totalSeconds / 3600;
-        int minutes = (totalSeconds % 3600) / 60;
-        int seconds = totalSeconds % 60;
-
-        timerLabel.setText(
-                String.format("%02d:%02d:%02d", hours, minutes, seconds)
-        );
+        timerLabel.setText(String.format("%02d:%02d:%02d", h, m, s));
     }
 
     @FXML
@@ -82,13 +72,13 @@ public class RunningController {
         if (activeTask == null) return;
 
         stopTimer();
-        activeTask.setStatus("PAUSED");
+        dailyDAO.addSeconds(sessionSeconds); // ✅ UPDATE DAILY TOTAL
 
-        dao.update(activeTask);
+        activeTask.setStatus("PAUSED");
+        taskDAO.update(activeTask);
 
         runningList.getItems().remove(activeTask);
-        activeTask = null;
-        timerLabel.setText("00:00:00");
+        reset();
     }
 
     @FXML
@@ -96,13 +86,13 @@ public class RunningController {
         if (activeTask == null) return;
 
         stopTimer();
-        activeTask.setStatus("COMPLETED");
+        dailyDAO.addSeconds(sessionSeconds); // ✅ UPDATE DAILY TOTAL
 
-        dao.update(activeTask);
+        activeTask.setStatus("COMPLETED");
+        taskDAO.update(activeTask);
 
         runningList.getItems().remove(activeTask);
-        activeTask = null;
-        timerLabel.setText("00:00:00");
+        reset();
     }
 
     @FXML
@@ -110,21 +100,19 @@ public class RunningController {
         if (activeTask == null) return;
 
         stopTimer();
-        dao.delete(activeTask.getId());
+        taskDAO.delete(activeTask.getId());
+        reset();
+    }
 
-        runningList.getItems().remove(activeTask);
+    private void reset() {
         activeTask = null;
+        sessionSeconds = 0;
         timerLabel.setText("00:00:00");
     }
 
     @FXML
     public void goBack() {
         stopTimer();
-
-        if (activeTask != null) {
-            dao.update(activeTask);
-        }
-
         com.example.myapp.SceneUtil.switchTo("/com/example/myapp/task_manager.fxml", 900, 650);
     }
 }

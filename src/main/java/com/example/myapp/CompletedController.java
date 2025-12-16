@@ -13,7 +13,8 @@ import java.util.List;
 
 public class CompletedController {
 
-    @FXML private ListView<Task> completedList;
+    @FXML
+    private ListView<Task> completedList;
 
     private final TaskDAO dao = new TaskDAO();
 
@@ -25,21 +26,34 @@ public class CompletedController {
 
     private void setupCellFactory() {
         completedList.setCellFactory(lv -> new ListCell<>() {
-            private final HBox box = new HBox(8);
-            private final Label label = new Label();
+
+            private final HBox box = new HBox(10);
+            private final Label titleLabel = new Label();
+            private final Label timeLabel = new Label();
 
             @Override
             protected void updateItem(Task item, boolean empty) {
                 super.updateItem(item, empty);
+
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    label.setText(item.getTitle() + " | " + item.getPlannedTime() + " min");
-                    box.getChildren().setAll(label);
+                    titleLabel.setText(item.getTitle());
+                    timeLabel.setText(formatSeconds(item.getSpentTime()));
+
+                    box.getChildren().setAll(titleLabel, timeLabel);
                     setGraphic(box);
                 }
             }
         });
+    }
+
+    private String formatSeconds(int totalSeconds) {
+        int h = totalSeconds / 3600;
+        int m = (totalSeconds % 3600) / 60;
+        int s = totalSeconds % 60;
+
+        return String.format(" | %02d:%02d:%02d", h, m, s);
     }
 
     @FXML
@@ -67,7 +81,8 @@ public class CompletedController {
     public void onBack() {
         try {
             Stage stage = (Stage) completedList.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/myapp/task_manager.fxml"));
+            FXMLLoader loader =
+                    new FXMLLoader(getClass().getResource("/com/example/myapp/task_manager.fxml"));
             stage.setScene(new Scene(loader.load(), 900, 650));
         } catch (Exception e) {
             e.printStackTrace();

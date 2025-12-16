@@ -30,6 +30,11 @@ CREATE TABLE IF NOT EXISTS tasks (
     planned_time INTEGER DEFAULT 0,
     spent_time INTEGER DEFAULT 0
 );
+CREATE TABLE IF NOT EXISTS daily_study (
+    study_date TEXT PRIMARY KEY,
+    total_seconds INTEGER NOT NULL
+);
+
 """;
             st.execute(sql);
         } catch (SQLException e) {
