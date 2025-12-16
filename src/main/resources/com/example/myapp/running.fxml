@@ -8,7 +8,6 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.myapp.RunningController">
 
-    <!-- TOP -->
     <top>
         <HBox spacing="10" alignment="CENTER_LEFT">
             <padding>
@@ -19,31 +18,33 @@
                    style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
 
             <Region HBox.hgrow="ALWAYS"/>
-            <Button text="Back" onAction="#onBack"/>
+
+            <Button text="Back" onAction="#goBack"/>
         </HBox>
     </top>
 
-    <!-- CENTER -->
     <center>
-        <VBox spacing="10">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
+        <VBox spacing="15" alignment="CENTER">
+            <ListView fx:id="runningList" prefHeight="300"/>
 
-            <ListView fx:id="runningList" VBox.vgrow="ALWAYS"/>
+            <Label text="Study Timer"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <Label fx:id="timerLabel"
+                   text="00:00:00"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
         </VBox>
     </center>
 
-    <!-- BOTTOM -->
     <bottom>
-        <HBox spacing="10" alignment="CENTER">
+        <HBox spacing="12" alignment="CENTER">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets bottom="12"/>
             </padding>
 
-            <Button text="Pause" onAction="#onPause"/>
-            <Button text="Finish" onAction="#onFinish"/>
-            <Button text="Delete" onAction="#onDelete"/>
+            <Button text="Pause" onAction="#pauseTask"/>
+            <Button text="Finish" onAction="#finishTask"/>
+            <Button text="Delete" onAction="#deleteTask"/>
         </HBox>
     </bottom>
 
