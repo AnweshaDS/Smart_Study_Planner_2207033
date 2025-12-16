@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
+        StageHolder.setStage(stage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("cover.fxml"));
         Scene scene = new Scene(loader.load(), 800, 600);
         stage.setTitle("Smart Study Planner");
