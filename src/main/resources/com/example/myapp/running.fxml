@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.myapp.RunningController">
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myapp.RunningController">
 
     <top>
-        <HBox spacing="10" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #EE82EE;">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
 
-            <Label text="Running Tasks"
-                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Running Tasks" />
 
-            <Region HBox.hgrow="ALWAYS"/>
+            <Region HBox.hgrow="ALWAYS" />
 
-            <Button text="Back" onAction="#goBack"/>
+            <Button onAction="#goBack" text="Back" />
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="15" alignment="CENTER">
-            <ListView fx:id="runningList" prefHeight="300"/>
+        <VBox alignment="CENTER" prefWidth="204.0" spacing="15" style="-fx-background-color: #EE82EE;">
+            <ListView fx:id="runningList" prefHeight="300" style="-fx-background-color: #00FFFF;" />
 
-            <Label text="Study Timer"
-                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Study Timer" />
 
-            <Label fx:id="timerLabel"
-                   text="00:00:00"
-                   style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+            <Label fx:id="timerLabel" style="-fx-font-size: 28px; -fx-font-weight: bold;" text="00:00:00" />
         </VBox>
     </center>
 
     <bottom>
-        <HBox spacing="12" alignment="CENTER">
+        <HBox alignment="CENTER" spacing="12" style="-fx-background-color: #00FFFF;">
             <padding>
-                <Insets bottom="12"/>
+                <Insets bottom="12" />
             </padding>
 
-            <Button text="Pause" onAction="#pauseTask"/>
-            <Button text="Finish" onAction="#finishTask"/>
-            <Button text="Delete" onAction="#deleteTask"/>
+            <Button onAction="#pauseTask" prefHeight="17.0" prefWidth="47.0" text="Pause" />
+            <Button onAction="#finishTask" text="Finish" />
+            <Button onAction="#deleteTask" text="Delete" />
         </HBox>
     </bottom>
 

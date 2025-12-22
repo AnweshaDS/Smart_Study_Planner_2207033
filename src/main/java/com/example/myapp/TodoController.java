@@ -37,7 +37,7 @@ public class TodoController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    label.setText(item.getTitle() + " | " + item.getPlannedTime() + " min");
+                    label.setText(item.getTitle() + " |  Planned: " + item.getPlannedTime() + " min");
                     box.getChildren().setAll(label);
                     setGraphic(box);
                 }

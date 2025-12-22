@@ -21,7 +21,9 @@ public class RunningController {
     private Timeline timer;
     private Task activeTask;
 
-    private int sessionSeconds = 0; // ✅ TRACK CURRENT SESSION
+    private int sessionSeconds = 0;
+    private long lastTickMillis;
+
 
     @FXML
     public void initialize() {
@@ -34,22 +36,18 @@ public class RunningController {
 
     private void startTimer(Task task) {
         stopTimer();
-
         if (task == null) return;
 
         activeTask = task;
-        sessionSeconds = 0;
 
         timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             activeTask.setSpentTime(activeTask.getSpentTime() + 1);
-            sessionSeconds++;
             taskDAO.update(activeTask);
             updateLabel(activeTask.getSpentTime());
         }));
 
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
-        updateLabel(activeTask.getSpentTime());
     }
 
     private void stopTimer() {
@@ -72,7 +70,7 @@ public class RunningController {
         if (activeTask == null) return;
 
         stopTimer();
-        dailyDAO.addSeconds(sessionSeconds); // ✅ UPDATE DAILY TOTAL
+        dailyDAO.addSeconds(activeTask.getSpentTime());
 
         activeTask.setStatus("PAUSED");
         taskDAO.update(activeTask);
@@ -86,7 +84,8 @@ public class RunningController {
         if (activeTask == null) return;
 
         stopTimer();
-        dailyDAO.addSeconds(sessionSeconds); // ✅ UPDATE DAILY TOTAL
+        dailyDAO.addSeconds(activeTask.getSpentTime());
+
 
         activeTask.setStatus("COMPLETED");
         taskDAO.update(activeTask);

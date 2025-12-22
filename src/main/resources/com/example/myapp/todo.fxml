@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.myapp.TodoController">
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myapp.TodoController">
 
     <!-- TOP -->
     <top>
-        <HBox spacing="10" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #EE82EE;">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
 
-            <Label text="TODO Tasks"
-                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="TODO Tasks" />
 
-            <Region HBox.hgrow="ALWAYS"/>
-            <Button text="Back" onAction="#onBack"/>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#onBack" text="Back" />
         </HBox>
     </top>
 
@@ -27,32 +30,32 @@
     <center>
         <VBox spacing="10">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
 
             <!-- INPUTS -->
             <HBox spacing="8">
-                <TextField fx:id="titleField" promptText="Task title" HBox.hgrow="ALWAYS"/>
-                <TextField fx:id="descField" promptText="Description" prefWidth="250"/>
-                <TextField fx:id="plannedField" promptText="Planned time (min)" prefWidth="150"/>
-                <Button text="Add Study Task" onAction="#onAddTask"/>
+                <TextField fx:id="titleField" promptText="Task title" HBox.hgrow="ALWAYS" />
+                <TextField fx:id="descField" prefWidth="250" promptText="Description" />
+                <TextField fx:id="plannedField" prefWidth="150" promptText="Planned time (min)" />
+                <Button onAction="#onAddTask" text="Add Study Task" />
             </HBox>
 
             <!-- LIST -->
-            <ListView fx:id="todoList" VBox.vgrow="ALWAYS"/>
+            <ListView fx:id="todoList" style="-fx-background-color: #00FFFF;" VBox.vgrow="ALWAYS" />
 
         </VBox>
     </center>
 
     <!-- BOTTOM -->
     <bottom>
-        <HBox spacing="10" alignment="CENTER">
+        <HBox alignment="CENTER" spacing="10" style="-fx-background-color: #EE82EE;">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
 
-            <Button text="Start" onAction="#onStart"/>
-            <Button text="Delete" onAction="#onDelete"/>
+            <Button onAction="#onStart" text="Start" />
+            <Button onAction="#onDelete" text="Delete" />
         </HBox>
     </bottom>
 
