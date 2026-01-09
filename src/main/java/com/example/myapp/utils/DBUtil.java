@@ -6,43 +6,43 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBUtil {
-    private static final String DB_URL = "jdbc:sqlite:" + System.getProperty("user.home") + "/studyplanner.db";
 
+    private static final String DB =
+            "jdbc:sqlite:" + System.getProperty("user.home") + "/studyplanner.db";
 
     static {
-        try (Connection conn = getConnection(); Statement st = conn.createStatement()) {
-            String sql = """
-CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL,
-    full_name TEXT,
-    age INTEGER,
-    qualification TEXT
-);
+        try (Connection c = getConnection();
+             Statement st = c.createStatement()) {
 
-CREATE TABLE IF NOT EXISTS tasks (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    description TEXT,
-    status TEXT NOT NULL,
-    planned_time INTEGER DEFAULT 0,
-    spent_time INTEGER DEFAULT 0
-);
-CREATE TABLE IF NOT EXISTS daily_study (
-    study_date TEXT PRIMARY KEY,
-    total_seconds INTEGER NOT NULL
-);
+            st.execute("""
+            CREATE TABLE IF NOT EXISTS tasks (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                status INTEGER NOT NULL,
+                target_seconds INTEGER,
+                study_seconds INTEGER,
+                break_seconds INTEGER,
+                spent_seconds INTEGER,
+                last_start_time INTEGER,
+                today_spent_seconds INTEGER,
+                last_study_date TEXT
+            );
+        """);
 
-""";
-            st.execute(sql);
+            st.execute("""
+            CREATE TABLE IF NOT EXISTS daily_study (
+                study_date TEXT PRIMARY KEY,
+                total_seconds INTEGER NOT NULL
+            );
+        """);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL);
+        return DriverManager.getConnection(DB);
     }
 }
