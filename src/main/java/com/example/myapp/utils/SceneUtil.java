@@ -1,5 +1,6 @@
-package com.example.myapp;
+package com.example.myapp.utils;
 
+import com.example.myapp.StageHolder;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
