@@ -1,53 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.myapp.PomodoroController">
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myapp.PomodoroController">
 
     <!-- TOP -->
     <top>
-        <HBox spacing="10" alignment="CENTER_LEFT"
-              style="-fx-background-color: #EE82EE;">
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #EE82EE;">
             <padding>
-                <Insets top="10" bottom="10" left="10" right="10"/>
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
 
-            <Label fx:id="taskTitleLabel"
-                   style="-fx-font-size: 18px; -fx-font-weight: bold;"
-                   text="Task Name"/>
+            <Label fx:id="taskTitleLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Task Name" />
 
-            <Region HBox.hgrow="ALWAYS"/>
-            <Button text="Back" onAction="#onBack"/>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#onBack" text="Back" />
         </HBox>
     </top>
 
     <!-- CENTER -->
     <center>
-        <VBox spacing="15" alignment="CENTER">
-            <Label fx:id="modeLabel"
-                   text="STUDY"
-                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <VBox alignment="CENTER" spacing="15" style="-fx-background-color: #FFFFE0;">
+            <Label fx:id="modeLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="STUDY" />
 
-            <Label fx:id="timerLabel"
-                   text="00:00:00"
-                   style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
+            <Label fx:id="timerLabel" style="-fx-font-size: 36px; -fx-font-weight: bold;" text="00:00:00" />
         </VBox>
     </center>
 
     <!-- BOTTOM -->
     <bottom>
-        <HBox spacing="15" alignment="CENTER"
-              style="-fx-background-color: #00FFFF;">
+        <HBox alignment="CENTER" spacing="15" style="-fx-background-color: #00FFFF;">
             <padding>
-                <Insets top="10" bottom="10"/>
+                <Insets bottom="10" top="10" />
             </padding>
 
-            <Button text="Pause" onAction="#pause"/>
-            <Button text="Finish" onAction="#finish"/>
+            <Button onAction="#pause" text="Pause" />
+            <Button onAction="#finish" text="Finish" />
         </HBox>
     </bottom>
 

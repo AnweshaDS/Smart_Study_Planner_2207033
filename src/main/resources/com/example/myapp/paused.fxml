@@ -32,7 +32,7 @@
                 <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
 
-            <ListView fx:id="pausedList" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="pausedList" style="-fx-background-color: #FFFFE0;" VBox.vgrow="ALWAYS" />
         </VBox>
     </center>
 

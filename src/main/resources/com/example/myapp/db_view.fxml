@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.example.myapp.DBViewController">
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myapp.DBViewController">
 
     <top>
-        <HBox spacing="10" style="-fx-padding: 10;">
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #00FFFF;">
             <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Task Database Viewer" textFill="#6b2c2c" />
             <Region HBox.hgrow="ALWAYS" />
             <Button onAction="#onBack" text="Back" />
@@ -19,15 +19,16 @@
     </top>
 
     <center>
-        <TableView fx:id="table" prefHeight="400" prefWidth="600">
+        <TableView fx:id="table" prefHeight="400" prefWidth="600" style="-fx-background-color: #EE82EE;">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="50" text="ID" />
-                <TableColumn fx:id="colTitle" prefWidth="150" text="Title" />
-                <TableColumn fx:id="colDesc" prefWidth="150" text="Description" />
-                <TableColumn fx:id="colStatus" prefWidth="100" text="Status" />
-                <TableColumn fx:id="colPlanned" prefWidth="100" text="Planned Time" />
-                <TableColumn fx:id="colSpent" prefWidth="100" text="Spent Time" />
+                <TableColumn fx:id="colTitle" prefWidth="160" text="Title" />
+                <TableColumn fx:id="colStatus" prefWidth="110" text="Status" />
+                <TableColumn fx:id="colTarget" prefWidth="120" text="Target Time" />
+                <TableColumn fx:id="colSpent" prefWidth="120" text="Spent Time" />
+                <TableColumn fx:id="colRemaining" prefWidth="140" text="Remaining Time" />
             </columns>
+
         </TableView>
     </center>
 
