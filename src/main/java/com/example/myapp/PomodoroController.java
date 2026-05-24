@@ -8,6 +8,7 @@ import com.example.myapp.utils.SceneUtil;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
@@ -22,23 +23,16 @@ public class PomodoroController {
 
     private Task task;
     private Timeline timer;
-
     private boolean isStudyPhase = true;
     private boolean isRunning = true;
-
     private int remainingSeconds;
     private long sessionStartMillis;
 
-    //called externally
-
     public void setTask(Task task) {
         this.task = task;
-
         taskTitleLabel.setText(task.getTitle());
         startStudy();
     }
-
-    // timer logic
 
     private void startStudy() {
         isStudyPhase = true;
@@ -50,29 +44,24 @@ public class PomodoroController {
         isStudyPhase = false;
         modeLabel.setText("BREAK");
         startTimer(task.getBreakSeconds());
+        showPhaseNotification("Break time! Take a short rest.");
     }
 
     private void startTimer(int seconds) {
         stopTimer();
-
         remainingSeconds = seconds;
         sessionStartMillis = System.currentTimeMillis();
-
         updateLabel();
 
-        timer = new Timeline(
-                new KeyFrame(Duration.seconds(1), e -> tick())
-        );
+        timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> tick()));
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
     }
 
     private void tick() {
         remainingSeconds--;
-
         if (remainingSeconds <= 0) {
             saveTime();
-
             if (isStudyPhase) {
                 startBreak();
             } else {
@@ -80,7 +69,6 @@ public class PomodoroController {
             }
             return;
         }
-
         updateLabel();
     }
 
@@ -94,8 +82,6 @@ public class PomodoroController {
             timer = null;
         }
     }
-
-    // time saving
 
     private void saveTime() {
         long now = System.currentTimeMillis();
@@ -112,7 +98,7 @@ public class PomodoroController {
         sessionStartMillis = now;
     }
 
-    // actions
+    // Actions
 
     @FXML
     public void pause() {
@@ -134,10 +120,7 @@ public class PomodoroController {
         task.setStatus(TaskStatus.COMPLETED);
         taskDAO.update(task);
 
-        SceneUtil.switchTo(
-                "/com/example/myapp/task_manager.fxml",
-                900, 650
-        );
+        SceneUtil.switchTo("/com/example/myapp/task_manager.fxml", StageHolder.getStage().getWidth(), StageHolder.getStage().getHeight());
     }
 
     @FXML
@@ -148,9 +131,15 @@ public class PomodoroController {
         task.setStatus(TaskStatus.PAUSED);
         taskDAO.update(task);
 
-        SceneUtil.switchTo(
-                "/com/example/myapp/task_manager.fxml",
-                900, 650
-        );
+        SceneUtil.switchTo("/com/example/myapp/task_manager.fxml", StageHolder.getStage().getWidth(), StageHolder.getStage().getHeight());
+    }
+
+    // Notification on phase change
+    private void showPhaseNotification(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Pomodoro");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

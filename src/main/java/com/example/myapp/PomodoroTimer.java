@@ -28,6 +28,7 @@ public class PomodoroTimer {
     }
 
     public void start() {
+        isStudy = true;
         sessionStartMillis = System.currentTimeMillis();
         remaining = isStudy ? studySeconds : breakSeconds;
 
