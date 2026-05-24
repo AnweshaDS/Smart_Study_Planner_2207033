@@ -13,13 +13,10 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(loader.load(), 900, 650);
         stage.setTitle("Smart Study Planner");
         stage.setScene(scene);
-        stage.setResizable(true);       // Allow resizing
-        stage.setMinWidth(640);         // Set sensible minimum size
+        stage.setResizable(true);       
+        stage.setMinWidth(640);         
         stage.setMinHeight(480);
-
-        // Don't maximize or force fullscreen initially
         stage.setMaximized(false);
-
         stage.show();
     }
 

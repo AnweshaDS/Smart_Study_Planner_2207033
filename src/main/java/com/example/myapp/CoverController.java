@@ -32,7 +32,7 @@ public class CoverController {
             Stage stage = (Stage) logoView.getScene().getWindow();
             FXMLLoader loader =
                     new FXMLLoader(getClass().getResource("/com/example/myapp/login.fxml"));
-            stage.setScene(new Scene(loader.load(), 900, 650));
+            stage.setScene(new Scene(loader.load(), stage.getWidth(), stage.getHeight()));
         } catch (Exception e) {
             e.printStackTrace();
         }

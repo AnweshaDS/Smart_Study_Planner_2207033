@@ -104,7 +104,7 @@ public class HelloController {
                 trayIcon.setImageAutoSize(true);
                 tray.add(trayIcon);
                 trayIcon.displayMessage("Time's Up!", "Your target time is over! Take a break or start another task.", java.awt.TrayIcon.MessageType.INFO);
-                tray.remove(trayIcon); // Clean up instantly
+                tray.remove(trayIcon); 
             }
         } catch (Exception ignored) {}
     }
