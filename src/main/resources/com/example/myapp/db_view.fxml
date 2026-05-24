@@ -8,18 +8,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myapp.DBViewController">
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@style.css"
+            fx:controller="com.example.myapp.DBViewController">
 
     <top>
-        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #00FFFF;">
-            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Task Database Viewer" textFill="#6b2c2c" />
-            <Region HBox.hgrow="ALWAYS" />
-            <Button onAction="#onBack" text="Back" />
+        <HBox spacing="10" styleClass="header-bar">
+            <Label styleClass="header-title" text="Task Database Viewer" />
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button onAction="#onBack" text="Back" styleClass="back-btn"/>
         </HBox>
     </top>
 
     <center>
-        <TableView fx:id="table" prefHeight="400" prefWidth="600" style="-fx-background-color: #EE82EE;">
+        <TableView fx:id="table" prefHeight="390" prefWidth="670" styleClass="task-list">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="50" text="ID" />
                 <TableColumn fx:id="colTitle" prefWidth="160" text="Title" />
@@ -28,7 +31,6 @@
                 <TableColumn fx:id="colSpent" prefWidth="120" text="Spent Time" />
                 <TableColumn fx:id="colRemaining" prefWidth="140" text="Remaining Time" />
             </columns>
-
         </TableView>
     </center>
 

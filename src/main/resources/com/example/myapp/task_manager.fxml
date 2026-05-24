@@ -8,41 +8,35 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myapp.TaskManagerController">
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@style.css"
+            fx:controller="com.example.myapp.TaskManagerController">
 
     <!-- TOP BAR -->
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="10">
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="header-bar">
             <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
+                <Insets bottom="10" left="22" right="22" top="10"/>
             </padding>
 
-            <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-background-color: #E0FFFF;" text="Smart Study Planner" textFill="#a11e1e" />
-            <Label fx:id="dailyTotalLabel" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Today Studied: 00:00:00" textFill="#3d215c" />
+            <Label styleClass="header-title" text="Smart Study Planner"/>
+            <Label fx:id="dailyTotalLabel" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Today Studied: 00:00:00" textFill="#3d215c"/>
 
+            <Region HBox.hgrow="ALWAYS"/>
 
-            <Region HBox.hgrow="ALWAYS" />
-
-            <Button onAction="#onViewDB" text="View DB" />
-            <Button onAction="#onLogout" text="Logout" />
+            <Button onAction="#onViewDB" text="View DB" styleClass="action-btn"/>
+            <Button onAction="#onLogout" text="Logout" styleClass="back-btn"/>
         </HBox>
     </top>
 
     <!-- CENTER HUB -->
     <center>
-        <VBox alignment="CENTER" spacing="25" style="-fx-background-color: #00FFFF;">
-            <padding>
-                <Insets bottom="40" left="40" right="40" top="40" />
-            </padding>
-
-            <Button onAction="#openTodo" prefHeight="50" prefWidth="220" text="TODO" />
-
-            <Button onAction="#openRunning" prefHeight="50" prefWidth="220" text="RUNNING" />
-
-            <Button onAction="#openPaused" prefHeight="50" prefWidth="220" text="PAUSED" />
-
-            <Button onAction="#openCompleted" prefHeight="50" prefWidth="220" text="COMPLETED" />
+        <VBox alignment="CENTER" spacing="24" styleClass="running-panel">
+            <Button onAction="#openTodo" prefHeight="49" prefWidth="210" text="TODO" styleClass="action-btn"/>
+            <Button onAction="#openRunning" prefHeight="49" prefWidth="210" text="RUNNING" styleClass="action-btn"/>
+            <Button onAction="#openPaused" prefHeight="49" prefWidth="210" text="PAUSED" styleClass="action-btn"/>
+            <Button onAction="#openCompleted" prefHeight="49" prefWidth="210" text="COMPLETED" styleClass="action-btn"/>
         </VBox>
     </center>
-
 </BorderPane>
