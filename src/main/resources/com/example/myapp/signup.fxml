@@ -5,14 +5,16 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="10" style="-fx-background-color: #7FFFD4;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myapp.SignupController">
+<VBox alignment="CENTER"
+      spacing="12"
+      styleClass="running-panel"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      stylesheets="@style.css"
+      fx:controller="com.example.myapp.SignupController">
 
-    <Label style="-fx-font-size: 22px;" text="Sign Up" textFill="#ae3434">
-      <font>
-         <Font size="13.0" />
-      </font></Label>
+    <Label styleClass="header-title" text="Sign Up"/>
 
     <TextField fx:id="username" promptText="Username" />
     <TextField fx:id="email" promptText="Email" />
@@ -21,8 +23,5 @@
     <TextField fx:id="age" promptText="Age" />
     <TextField fx:id="qualification" promptText="Study Qualification" />
 
-    <Button onAction="#onRegister" text="Register">
-      <font>
-         <Font name="System Bold" size="12.0" />
-      </font></Button>
+    <Button onAction="#onRegister" text="Register" styleClass="action-btn"/>
 </VBox>

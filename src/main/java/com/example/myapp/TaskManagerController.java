@@ -35,21 +35,17 @@ public class TaskManagerController {
         );
     }
 
-    /**
-     * Call this when returning to TaskManager
-     * from Running / Paused / Completed pages
-     */
+    
     public void onSceneShown() {
         refreshDailyTotal();
     }
 
     // navigation
-
     private void switchScene(String fxml, double width, double height) {
         try {
             Stage stage = StageHolder.getStage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            stage.setScene(new Scene(loader.load(), width, height));
+            stage.setScene(new Scene(loader.load(), stage.getWidth(), stage.getHeight()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,31 +53,31 @@ public class TaskManagerController {
 
     @FXML
     public void openTodo() {
-        switchScene("/com/example/myapp/todo.fxml", 900, 650);
+        switchScene("/com/example/myapp/todo.fxml", StageHolder.getStage().getWidth(), StageHolder.getStage().getHeight());
     }
 
     @FXML
     public void openRunning() {
-        switchScene("/com/example/myapp/running.fxml", 900, 650);
+        switchScene("/com/example/myapp/running.fxml", StageHolder.getStage().getWidth(), StageHolder.getStage().getHeight());
     }
 
     @FXML
     public void openPaused() {
-        switchScene("/com/example/myapp/paused.fxml", 900, 650);
+        switchScene("/com/example/myapp/paused.fxml", StageHolder.getStage().getWidth(), StageHolder.getStage().getHeight());
     }
 
     @FXML
     public void openCompleted() {
-        switchScene("/com/example/myapp/completed.fxml", 900, 650);
+        switchScene("/com/example/myapp/completed.fxml", StageHolder.getStage().getWidth(), StageHolder.getStage().getHeight());
     }
 
     @FXML
     public void onViewDB() {
-        switchScene("/com/example/myapp/db_view.fxml", 900, 600);
+        switchScene("/com/example/myapp/db_view.fxml", StageHolder.getStage().getWidth(), StageHolder.getStage().getHeight());
     }
 
     @FXML
     public void onLogout() {
-        switchScene("/com/example/myapp/cover.fxml", 900, 650);
+        switchScene("/com/example/myapp/cover.fxml", StageHolder.getStage().getWidth(), StageHolder.getStage().getHeight());
     }
 }

@@ -38,7 +38,7 @@ public class SignupController {
             Stage stage = (Stage) username.getScene().getWindow();
             stage.setScene(new Scene(
                     FXMLLoader.load(getClass().getResource("/com/example/myapp/login.fxml")),
-                    900, 650));
+                    stage.getWidth(), stage.getHeight()));
         } catch (Exception e) {
             e.printStackTrace();
         }

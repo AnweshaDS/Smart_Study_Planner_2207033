@@ -166,7 +166,7 @@ public class TodoController {
                     new FXMLLoader(getClass().getResource(
                             "/com/example/myapp/task_manager.fxml"
                     ));
-            stage.setScene(new Scene(loader.load(), 900, 650));
+            stage.setScene(new Scene(loader.load(),stage.getWidth(), stage.getHeight()));
         } catch (Exception e) {
             e.printStackTrace();
         }
