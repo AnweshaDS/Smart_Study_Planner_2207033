@@ -10,9 +10,16 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws Exception {
         StageHolder.setStage(stage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("cover.fxml"));
-        Scene scene = new Scene(loader.load(), 800, 600);
+        Scene scene = new Scene(loader.load(), 900, 650);
         stage.setTitle("Smart Study Planner");
         stage.setScene(scene);
+        stage.setResizable(true);       // Allow resizing
+        stage.setMinWidth(640);         // Set sensible minimum size
+        stage.setMinHeight(480);
+
+        // Don't maximize or force fullscreen initially
+        stage.setMaximized(false);
+
         stage.show();
     }
 

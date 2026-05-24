@@ -6,6 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@style.css"
             fx:controller="com.example.myapp.HelloController">
 
     <top>
@@ -23,14 +24,18 @@
     </center>
 
     <bottom>
-        <HBox spacing="10">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
-            <Button text="Start" onAction="#onStartTask"/>
-            <Button text="Pause" onAction="#onPauseTask"/>
-            <Button text="Finish" onAction="#onFinishTask"/>
-        </HBox>
-    </bottom>
+    <HBox spacing="16" alignment="CENTER">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+        <Label text="Study seconds:"/>
+        <TextField fx:id="timerInput" promptText="e.g. 1500" prefWidth="80"/>
+        <Button text="Set Timer" onAction="#onSetTimer"/>
+        <Label fx:id="timerLabel" text="00:00" style="-fx-font-size: 19px; -fx-font-weight: bold;"/>
+        <Button text="Start" onAction="#onStartTask"/>
+        <Button text="Pause" onAction="#onPauseTask"/>
+        <Button text="Finish" onAction="#onFinishTask"/>
+    </HBox>
+</bottom>
 
 </BorderPane>

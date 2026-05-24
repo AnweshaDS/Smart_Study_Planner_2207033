@@ -1,59 +1,111 @@
 package com.example.myapp;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.util.Duration;
 
 public class HelloController {
+    @FXML private TextField taskInput;
+    @FXML private ListView<String> taskList;
+
+    @FXML private TextField timerInput;
+    @FXML private Label timerLabel;
+
+    private Timeline timeline;
+    private int targetSeconds = 0;
+    private int timeLeft = 0;
 
     @FXML
-    private ListView<String> taskList;
+    public void initialize() {
+        timerLabel.setText("00:00");
+    }
 
     @FXML
-    private TextField taskInput;
-
-    // Add Task
-    @FXML
-    protected void onAddTask() {
-        String task = taskInput.getText().trim();
+    public void onAddTask() {
+        String task = taskInput.getText();
         if (!task.isEmpty()) {
-            taskList.getItems().add(task + " (Not Started)");
+            taskList.getItems().add(task);
             taskInput.clear();
         }
     }
 
-    // Start Task
     @FXML
-    protected void onStartTask() {
-        int index = taskList.getSelectionModel().getSelectedIndex();
-        if (index >= 0) {
-            String task = taskList.getItems().get(index);
-            taskList.getItems().set(index, updateStatus(task, "Started"));
+    public void onSetTimer() {
+        try {
+            targetSeconds = Integer.parseInt(timerInput.getText());
+            if (targetSeconds <= 0) throw new NumberFormatException();
+            timeLeft = targetSeconds;
+            timerLabel.setText(formatTime(timeLeft));
+        } catch (NumberFormatException ex) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please enter a valid, positive number of seconds.");
         }
     }
 
-    // Pause Task
     @FXML
-    protected void onPauseTask() {
-        int index = taskList.getSelectionModel().getSelectedIndex();
-        if (index >= 0) {
-            String task = taskList.getItems().get(index);
-            taskList.getItems().set(index, updateStatus(task, "Paused"));
+    public void onStartTask() {
+        if (targetSeconds <= 0) {
+            showAlert(Alert.AlertType.WARNING, "No Timer Set", "Set the timer before starting.");
+            return;
         }
+        if (timeline != null) timeline.stop();
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            timeLeft--;
+            timerLabel.setText(formatTime(timeLeft));
+            if (timeLeft <= 0) {
+                timeline.stop();
+                timerLabel.setText("00:00");
+                showNotification();
+            }
+        }));
+        timeline.setCycleCount(timeLeft);
+        timeline.play();
     }
 
-    // Finish Task
     @FXML
-    protected void onFinishTask() {
-        int index = taskList.getSelectionModel().getSelectedIndex();
-        if (index >= 0) {
-            String task = taskList.getItems().get(index);
-            taskList.getItems().set(index, updateStatus(task, "Finished"));
-        }
+    public void onPauseTask() {
+        if (timeline != null) timeline.pause();
     }
 
-    private String updateStatus(String original, String newStatus) {
-        String taskName = original.split("\\(")[0].trim();
-        return taskName + " (" + newStatus + ")";
+    @FXML
+    public void onFinishTask() {
+        if (timeline != null) timeline.stop();
+        timerLabel.setText(formatTime(targetSeconds));
+        timeLeft = targetSeconds;
+    }
+
+    // Helper methods
+    private String formatTime(int totalSeconds) {
+        int mins = totalSeconds / 60;
+        int secs = totalSeconds % 60;
+        return String.format("%02d:%02d", mins, secs);
+    }
+
+    private void showAlert(Alert.AlertType type, String title, String content) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(type, content, ButtonType.OK);
+            alert.setHeaderText(null);
+            alert.setTitle(title);
+            alert.showAndWait();
+        });
+    }
+
+    private void showNotification() {
+        showAlert(Alert.AlertType.INFORMATION, "Time's Up!", "Your target time is over! Take a break or start another task.");
+
+        // Optional: System notification (requires Java AWT, may not work in all environments)
+        try {
+            if (java.awt.SystemTray.isSupported()) {
+                java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
+                java.awt.Image image = java.awt.Toolkit.getDefaultToolkit().createImage("");
+                java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(image, "Smart Study Planner");
+                trayIcon.setImageAutoSize(true);
+                tray.add(trayIcon);
+                trayIcon.displayMessage("Time's Up!", "Your target time is over! Take a break or start another task.", java.awt.TrayIcon.MessageType.INFO);
+                tray.remove(trayIcon); // Clean up instantly
+            }
+        } catch (Exception ignored) {}
     }
 }

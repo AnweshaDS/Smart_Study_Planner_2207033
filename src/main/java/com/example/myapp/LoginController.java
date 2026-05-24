@@ -38,7 +38,7 @@ public class LoginController {
         try {
             Stage stage = (Stage) userField.getScene().getWindow();
             stage.setScene(new Scene(
-                    FXMLLoader.load(getClass().getResource(fxml)), 900, 650));
+                    FXMLLoader.load(getClass().getResource(fxml)), stage.getWidth(), stage.getHeight()));
         } catch (Exception e) {
             e.printStackTrace();
         }
