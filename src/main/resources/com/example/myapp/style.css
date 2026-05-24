@@ -1,0 +1,143 @@
+.root {
+    -fx-font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+    -fx-background-color: #191d24;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #252c36;
+    -fx-text-fill: #e0e0e0;
+    -fx-font-size: 15px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+    -fx-border-color: #374151;
+}
+.button:hover {
+    -fx-background-color: #2b3946;
+    -fx-text-fill: #fff;
+}
+
+/* Labels */
+.label {
+    -fx-font-size: 17px;
+    -fx-text-fill: #e0e0e0;
+}
+
+/* TextFields */
+.text-field {
+    -fx-background-color: #23272f;
+    -fx-text-fill: #f2f3f5;
+    -fx-prompt-text-fill: #72757a;
+    -fx-background-radius: 6px;
+    -fx-padding: 7 12 7 12;
+    -fx-font-size: 15px;
+    -fx-border-color: #374151;
+}
+
+/* ListView, HBox (general) */
+.hbox {
+    -fx-background-color: #20232b;
+    -fx-background-radius: 9px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,30,30,0.16), 12, 0, 0, 4);
+}
+.list-view {
+    -fx-background-insets: 0;
+    -fx-background-radius: 8;
+    -fx-font-size: 16px;
+    -fx-background-color: #23272f;
+    -fx-cell-hover-color: #232e3a;
+    -fx-border-color: #273143;
+    -fx-border-radius: 8;
+    -fx-text-fill: #e0e0e0;
+}
+
+/* Modern page-specific and layout styles */
+.header-bar {
+    -fx-background-color: #20232b;
+    -fx-background-radius: 0 0 9 9;
+}
+.header-title {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2dd4bf;
+}
+.back-btn {
+    -fx-background-color: #f43f5e;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-font-size: 14px;
+}
+.back-btn:hover {
+    -fx-background-color: #be123c;
+}
+
+/* Special areas/panels */
+.running-panel {
+    -fx-background-color: #23272f;
+    -fx-background-radius: 11px;
+    -fx-effect: dropshadow(three-pass-box, rgba(20,20,24,0.22), 18, 0, 0, 3);
+    -fx-padding: 32 32 32 32;
+    -fx-min-width: 420;
+}
+
+.subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #9ca3af;
+    -fx-padding: 0 0 11 0;
+}
+.task-list {
+    -fx-background-radius: 8;
+    -fx-font-size: 16px;
+    -fx-background-color: #20232b;
+    -fx-border-color: #334155;
+    -fx-border-radius: 8;
+    -fx-padding: 4 0 4 0;
+    -fx-text-fill: #f3f6fa;
+}
+
+.footer-bar {
+    -fx-background-color: #1a2226;
+}
+
+/* Action & delete buttons */
+.action-btn {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: #fff;
+    -fx-font-size: 15px;
+    -fx-background-radius: 5px;
+}
+.action-btn:hover {
+    -fx-background-color: #1e40af;
+}
+.delete-btn {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+}
+.delete-btn:hover {
+    -fx-background-color: #991b1b;
+}
+
+/* Table styles */
+.table-view {
+    -fx-background-radius: 8;
+    -fx-background-color: #20232b;
+    -fx-border-color: #273043;
+    -fx-border-radius: 8;
+    -fx-padding: 4 0 4 0;
+    -fx-text-fill: #e0e0e0;
+}
+.table-row-cell {
+    -fx-background-color: #23272f;
+    -fx-text-fill: #e0e0e0;
+}
+.table-row-cell:selected, .table-row-cell:focused {
+    -fx-background-color: #1e293b;
+    -fx-text-fill: #fff;
+}
+.table-column-header {
+    -fx-background-color: #23272f;
+    -fx-text-fill: #7dd3fc;
+    -fx-font-weight: bold;
+}
